@@ -1,0 +1,61 @@
+* {
+  border: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(95, 126, 66);
+}
+
+.login {
+  align-items: center;
+  background-color: beige;
+  border: 2px grey solid;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 200px;
+  max-width: 300px;
+  min-height: 150px;
+  padding: 35px;
+  width: 80%;
+}
+
+input , .loginButton {
+  border: 1px rgb(95, 126, 66) solid;
+  border-radius: 7px;
+  padding: 7px;
+  text-align: center;
+  width: 180px;
+}
+
+.loginLogo {
+  margin-bottom: 20px;
+  padding: 7px;
+  width: 150px;
+}
+
+.loginButton {
+  background-color: rgb(127, 165, 92);
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
+  width: 66%;
+}
+
+.loginButton:active {
+  background-color: rgb(139, 177, 103);
+  border: 1px solid rgb(207, 207, 207);
+  color: rgb(78, 78, 78);
+}
+
+.invalidMail {
+  color: red;
+  font-size: 12px;
+}
+
+.disabled {
+  padding: 7px;
+}

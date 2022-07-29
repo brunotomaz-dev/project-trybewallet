@@ -18,6 +18,10 @@ class Login extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.body.style.backgroundColor = '#5f7e42';
+  }
+
   validateMail = (email) => {
     // https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Regular_Expressions
     const validate = /\S+@\S+\.\S+/;

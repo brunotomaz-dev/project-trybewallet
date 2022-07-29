@@ -1,33 +1,31 @@
-body {
-  background-color: whitesmoke;
-}
-
 .header {
   align-items: center;
   background-color: cadetblue;
   display: flex;
-  gap: 5px;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: space-between;
   padding: 7px;
 }
 
 .header div:nth-of-type( 1 ) {
-  width: 600px;
+  flex-grow: 1;
+  flex-shrink: 4;
 }
 
 .header div:nth-of-type( 2 ) {
-  min-width: 100px;
+  flex-shrink: 2;
 }
 
 .header div:nth-of-type( 3 ) {
-  min-width: fit-content;
+  flex-shrink: 1;
 }
 
 .header div:nth-of-type( 4 ) {
-  min-width: fit-content;
+  flex-shrink: 1;
 }
 
-img {
+.header img {
   background-color: aliceblue;
   border-radius: 8px;
   padding: 7px;

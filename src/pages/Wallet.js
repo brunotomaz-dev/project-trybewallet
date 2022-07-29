@@ -1,9 +1,15 @@
 import React from 'react';
+import Header from '../components/Header';
 import '../styles/wallet.css';
 
 class Wallet extends React.Component {
   render() {
-    return <div>TrybeWallet</div>;
+    return (
+      <div>
+        <Header />
+        TrybeWallet
+      </div>
+    );
   }
 }
 

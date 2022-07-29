@@ -1,13 +1,16 @@
 import React from 'react';
 import '../styles/login.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import logo from '../images/trybe_logo.png';
+import { userAction } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      isValidMail: true,
+      isValidMail: false,
       email: '',
       password: '',
       isDisabled: true,
@@ -31,28 +34,34 @@ class Login extends React.Component {
   }
 
   validateChar = () => {
+    const { email, password, isValidMail } = this.state;
+    const minChar = 5;
+    let isValid = false;
+    this.validateMail(email);
+    if (password.length > minChar && isValidMail) {
+      isValid = true;
+    }
+
     const changeState = (bool, text) => this.setState({
       isDisabled: bool,
       buttonClass: text,
     });
-    const minChar = 3;
-    const { email, password } = this.state;
-    return (password.length && email.length) <= minChar
+    return !isValid
       ? changeState(true, 'disabled')
       : changeState(false, 'loginButton');
   }
 
   handleClick = () => {
+    const { emailDispatch, history } = this.props;
     const { email } = this.state;
-    const { isValidMail } = this.state;
-    this.validateMail(email);
-    if (isValidMail) {
-      // send to store
-    }
+    emailDispatch(email);
+    this.setState({ email: '', password: '' });
+    console.log(history);
+    history.push('/carteira');
   }
 
   render() {
-    const { email, isValidMail, password, isDisabled, buttonClass } = this.state;
+    const { email, password, isDisabled, buttonClass } = this.state;
     return (
       <section className="login">
         <img src={ logo } alt="trybe" className="loginLogo" />
@@ -68,7 +77,6 @@ class Login extends React.Component {
           />
 
         </label>
-        {!isValidMail ? <span className="invalidMail">invalid Email</span> : <div />}
         <label htmlFor="password">
           <input
             type="password"
@@ -93,4 +101,13 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => (
+  { emailDispatch: (data) => { dispatch(userAction(data)); } }
+);
+
+Login.propTypes = {
+  emailDispatch: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(String).isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Login);

@@ -1,6 +1,6 @@
 .header {
   align-items: center;
-  background-color: cadetblue;
+  background-color: rgb(183, 212, 156);
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -30,4 +30,23 @@
   border-radius: 8px;
   padding: 7px;
   width: 100px;
+}
+
+.wallet-form {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 7px;
+}
+
+.wallet {
+  border: 1px rgb(95, 126, 66) solid;
+  border-radius: 7px;
+  padding: 7px;
+  text-align: center;
+  width: 180px;
+}
+
+.wallet-option {
+  background-color: rgb(183, 212, 156);
 }

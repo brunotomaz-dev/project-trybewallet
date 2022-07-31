@@ -83,6 +83,51 @@ class WalletForm extends Component {
             {this.mountSelect()}
           </select>
         </label>
+        <label htmlFor="method">
+          Método de Pagamento:
+          {' '}
+          <select
+            className="wallet"
+            data-testid="method-input"
+            name="method"
+            id="method"
+          >
+            <option
+              className="wallet-option"
+              value="Dinheiro"
+            >
+              Dinheiro
+            </option>
+            <option
+              className="wallet-option"
+              value="Cartão de crédito"
+            >
+              Cartão de crédito
+            </option>
+            <option
+              className="wallet-option"
+              value="Cartão de débito"
+            >
+              Cartão de débito
+            </option>
+          </select>
+        </label>
+        <label htmlFor="tag">
+          Categoria:
+          {' '}
+          <select
+            className="wallet"
+            data-testid="tag-input"
+            name="tag"
+            id="tag"
+          >
+            <option className="wallet-option" value="Alimentação">Alimentação</option>
+            <option className="wallet-option" value="Lazer">Lazer</option>
+            <option className="wallet-option" value="Trabalho">Trabalho</option>
+            <option className="wallet-option" value="Transporte">Transporte</option>
+            <option className="wallet-option" value="Saúde">Saúde</option>
+          </select>
+        </label>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import logo from '../images/trybe_logo.png';
+import store from '../redux/store';
 
 class Header extends Component {
   constructor() {
@@ -12,7 +13,29 @@ class Header extends Component {
     };
   }
 
+  handleTotal = () => {
+    const currentStore = store.getState();
+    const { wallet: { expenses } } = currentStore;
+    let soma = 0;
+    expenses.map((item) => {
+      const { exchangeRates, value, currency } = item;
+      const exchangeCurrency = Object.entries(exchangeRates)
+        .filter((rate) => rate.includes(currency));
+      const currentExchange = value * exchangeCurrency[0][1].ask;
+      soma += currentExchange;
+      return soma;
+    });
+    this.setState({
+      total: soma.toFixed(2),
+    });
+  }
+
+  unsubscribe = () => {
+    store.subscribe(this.handleTotal);
+  }
+
   render() {
+    this.unsubscribe();
     const { userMail } = this.props;
     const { total } = this.state;
     return (
@@ -25,10 +48,11 @@ class Header extends Component {
           {' '}
           {userMail}
         </div>
-        <div data-testid="total-field">
+        <div>
           R$
-          {' '}
-          { total }
+          <div data-testid="total-field">
+            { total }
+          </div>
         </div>
         <div data-testid="header-currency-field">BRL</div>
       </div>

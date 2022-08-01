@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrency } from '../redux/actions';
+import { fetchCurrency, fetchExchangeRates } from '../redux/actions';
 
 class WalletForm extends Component {
   constructor() {
     super();
 
     this.state = {
-      expense: 0,
+      expense: '',
       description: '',
-      currency: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
     };
   }
 
@@ -23,6 +25,15 @@ class WalletForm extends Component {
     const { value, name } = target;
     this.setState({
       [name]: value,
+    });
+  }
+
+  handleClick = () => {
+    const { fetchExchange } = this.props;
+    fetchExchange(this.state);
+    this.setState({
+      expense: '',
+      description: '',
     });
   }
 
@@ -91,6 +102,7 @@ class WalletForm extends Component {
             data-testid="method-input"
             name="method"
             id="method"
+            onChange={ this.handleChange }
           >
             <option
               className="wallet-option"
@@ -120,6 +132,8 @@ class WalletForm extends Component {
             data-testid="tag-input"
             name="tag"
             id="tag"
+            onChange={ this.handleChange }
+
           >
             <option className="wallet-option" value="Alimentação">Alimentação</option>
             <option className="wallet-option" value="Lazer">Lazer</option>
@@ -128,6 +142,13 @@ class WalletForm extends Component {
             <option className="wallet-option" value="Saúde">Saúde</option>
           </select>
         </label>
+        <button
+          className="wallet-button"
+          type="button"
+          onClick={ this.handleClick }
+        >
+          Adicionar Despesa
+        </button>
       </div>
     );
   }
@@ -139,11 +160,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrencies: () => { dispatch(fetchCurrency()); },
+  fetchExchange: (state) => { dispatch(fetchExchangeRates(state)); },
 });
 
 WalletForm.propTypes = {
   fetchCurrencies: PropTypes.func.isRequired,
-  currencies: PropTypes.string.isRequired,
+  fetchExchange: PropTypes.func.isRequired,
+  currencies: PropTypes.arrayOf(String).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);

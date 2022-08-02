@@ -19,6 +19,7 @@ describe('Testa a página de Login', () => {
     await userEvent.type(inputEmail, 'tomaz@gmail.com')
     await userEvent.type(inputSenha, '1234567')
     userEvent.click(button)
+    
    
     const {pathname} = history.location
     expect(pathname).toBe('/carteira')    

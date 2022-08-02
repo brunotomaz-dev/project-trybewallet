@@ -60,7 +60,6 @@ class Login extends React.Component {
     const { email } = this.state;
     emailDispatch(email);
     this.setState({ email: '', password: '' });
-    console.log(history);
     history.push('/carteira');
   }
 

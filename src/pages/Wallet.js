@@ -4,16 +4,17 @@ import WalletForm from '../components/WalletForm';
 import '../styles/wallet.css';
 
 class Wallet extends React.Component {
-  componentDidMount() {
-    document.body.style.backgroundColor = 'white';
-  }
+  // componentDidMount() {
+  //   document.body.style.backgroundColor = 'white';
+  // }
 
   render() {
     return (
-      <div>
+      <>
         <Header />
+        <h2>Tabela de Despesas</h2>
         <WalletForm />
-      </div>
+      </>
     );
   }
 }

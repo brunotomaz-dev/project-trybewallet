@@ -1,4 +1,4 @@
-import { GET_CURRENCIES, SET_EXPENSES } from '../actions';
+import { GET_CURRENCIES, REMOVE_EXPENSES, SET_EXPENSES } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -20,6 +20,11 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: [...state.expenses, { id: setId(), ...action.expenses }],
+    };
+  case REMOVE_EXPENSES:
+    return {
+      ...state,
+      expenses: action.expenses,
     };
   default:
     return state;

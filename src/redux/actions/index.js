@@ -5,6 +5,8 @@ export const SET_EXPENSES = 'expenses data';
 
 export const GET_CURRENCIES = 'currencies';
 
+export const REMOVE_EXPENSES = 'remove expenses';
+
 export const userAction = (email) => ({
   type: SET_USER,
   email,
@@ -17,6 +19,11 @@ export const getCurrency = (currencies) => ({
 
 export const getExpenses = (expenses) => ({
   type: SET_EXPENSES,
+  expenses,
+});
+
+export const removeExpenses = (expenses) => ({
+  type: REMOVE_EXPENSES,
   expenses,
 });
 

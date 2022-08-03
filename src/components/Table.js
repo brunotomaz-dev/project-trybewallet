@@ -40,7 +40,7 @@ class Table extends Component {
           <td>{description}</td>
           <td>{tag}</td>
           <td>{method}</td>
-          <td>{value}</td>
+          <td>{Number(value).toFixed(2)}</td>
           <td>{name}</td>
           <td>{Number(ask).toFixed(2)}</td>
           <td>{converted.toFixed(2)}</td>

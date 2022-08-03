@@ -13,7 +13,7 @@ class Wallet extends React.Component {
     return (
       <>
         <Header />
-        <h2>Tabela de Despesas</h2>
+        <h2>Tabela  de Despesas</h2>
         <WalletForm />
         <Table />
       </>

@@ -1,11 +1,13 @@
 // Coloque aqui suas actions
-export const SET_USER = 'user email';
+export const SET_USER = 'set user email';
 
-export const SET_EXPENSES = 'expenses data';
+export const SET_EXPENSES = 'set expenses data';
 
-export const GET_CURRENCIES = 'currencies';
+export const GET_CURRENCIES = 'get currencies';
 
 export const REMOVE_EXPENSES = 'remove expenses';
+
+export const EDITOR_EXPENSES = 'change editor status';
 
 export const userAction = (email) => ({
   type: SET_USER,
@@ -25,6 +27,11 @@ export const getExpenses = (expenses) => ({
 export const removeExpenses = (expenses) => ({
   type: REMOVE_EXPENSES,
   expenses,
+});
+
+export const editorExpenses = (editStatus) => ({
+  type: EDITOR_EXPENSES,
+  editStatus,
 });
 
 export function fetchCurrency() {

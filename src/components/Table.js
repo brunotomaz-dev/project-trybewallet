@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { removeExpenses } from '../redux/actions';
+import { editorExpenses, removeExpenses } from '../redux/actions';
+import '../styles/wallet-table.css';
 
 class Table extends Component {
   tableHeader = () => {
@@ -48,18 +49,35 @@ class Table extends Component {
           <td>Real</td>
           <td>
             <button
+              className="delete-btn"
               type="button"
               data-testid="delete-btn"
               onClick={ () => this.handleDeleteButton(id) }
             >
               Excluir
             </button>
-
+            <button
+              className="edit-btn"
+              type="button"
+              data-testid="edit-btn"
+              onClick={ () => this.handleEditButton(id) }
+            >
+              Editar
+            </button>
           </td>
         </tr>
       );
     });
   };
+
+  handleEditButton = (itemID) => {
+    const { editorStatus } = this.props;
+    const storeAtualization = {
+      idToEdit: itemID,
+      editor: true,
+    };
+    editorStatus(storeAtualization);
+  }
 
   handleDeleteButton = (itemID) => {
     const { walletExpenses, removeItems } = this.props;
@@ -85,11 +103,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   removeItems: (item) => { dispatch(removeExpenses(item)); },
+  editorStatus: (newStatus) => { dispatch(editorExpenses(newStatus)); },
 });
 
 Table.propTypes = {
   walletExpenses: PropTypes.arrayOf(Object).isRequired,
   removeItems: PropTypes.func.isRequired,
+  editorStatus: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

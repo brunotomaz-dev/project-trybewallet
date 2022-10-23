@@ -9,6 +9,8 @@ export const REMOVE_EXPENSES = 'remove expenses';
 
 export const EDITOR_EXPENSES = 'change editor status';
 
+export const UPDATE_EXPENSES = 'update expenses';
+
 export const userAction = (email) => ({
   type: SET_USER,
   email,
@@ -32,6 +34,11 @@ export const removeExpenses = (expenses) => ({
 export const editorExpenses = (editStatus) => ({
   type: EDITOR_EXPENSES,
   editStatus,
+});
+
+export const updateExpenses = (expenses) => ({
+  type: UPDATE_EXPENSES,
+  expenses,
 });
 
 export function fetchCurrency() {

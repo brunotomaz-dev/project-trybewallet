@@ -22,7 +22,20 @@ class Table extends Component {
 
   tableBody = () => {
     const { walletExpenses } = this.props;
-    return walletExpenses.map((expense) => {
+    const neg = -1;
+    const sort = walletExpenses.sort(
+      (a, b) => {
+        if (a.id < b.id) {
+          return neg;
+        }
+        if (a.id > b.id) {
+          return 1;
+        }
+        // a deve ser igual a b
+        return 0;
+      },
+    );
+    return sort.map((expense) => {
       const
         {
           currency,
